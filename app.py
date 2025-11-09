@@ -1,3 +1,4 @@
+from pathlib import Path
 from dash import Dash, html, dcc, Input, Output, Patch, clientside_callback, callback
 import pandas as pd
 import plotly.express as px
@@ -10,7 +11,10 @@ from dash_bootstrap_templates import load_figure_template
 
 
 # Loading the data using pandas
-data = pd.read_csv('./data\\EcommData_CSV_cleaned.csv', delimiter = ',')
+#data = pd.read_csv('./data\\EcommData_CSV_cleaned.csv', delimiter = ',')
+BASE_DIR = Path(__file__).resolve().parent
+data_path = BASE_DIR / 'data' / 'EcommData_CSV_cleaned.csv'
+data = pd.read_csv(data_path)
 
 # Initializing the Dash app
 app = Dash(__name__, external_stylesheets=[dbc.themes.CYBORG, dbc.icons.FONT_AWESOME])
